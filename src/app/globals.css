@@ -1,23 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #0a0a0a;
+  --color-foreground: #e0e0e0;
+  --accent-blue: #2563eb; /* Tailwind blue-600 */
+  --accent-blue-hover: #1d4ed8; /* Tailwind blue-700 */
   --font-sans: var(--font-geist-sans, Arial, sans-serif);
-  --font-mono: var(--font-geist-mono, monospace);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
-  background: var(--color-background);
+  background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
