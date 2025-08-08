@@ -1,4 +1,64 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [feedback, setFeedback] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setFeedback('');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    try {
+      const res = await fetch(process.env.NEXT_PUBLIC_API_BASE_URL + '/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      console.log('[ContactPage] Server response:', data);
+
+      if (res.ok) {
+        setStatus('success');
+        setFeedback('Your message has been sent. Thank you!');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error(data.error || 'Something went wrong.');
+      }
+    } catch (error: any) {
+      console.error('[ContactPage] Error submitting form:', error);
+      setStatus('error');
+      setFeedback(error.message || 'Something went wrong. Please try again.');
+    }
+  };
+
+  // Auto-hide feedback after 5s
+  useEffect(() => {
+    if (feedback) {
+      const timer = setTimeout(() => {
+        setFeedback('');
+        setStatus('idle');
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [feedback]);
+
   return (
     <div className="space-y-12 px-4 py-12 bg-gray-900 text-gray-200">
       <div className="text-center space-y-4">
@@ -59,17 +119,23 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Form */}
-        <form className="space-y-6 bg-gray-800 p-6 rounded-lg shadow-md">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-6 bg-gray-800 p-6 rounded-lg shadow-md"
+        >
           <h3 className="text-xl font-semibold text-blue-200">Send a Message</h3>
 
-          {["name", "email"].map((field) => (
+          {['name', 'email'].map((field) => (
             <div key={field}>
               <label htmlFor={field} className="block text-sm font-medium mb-2">
-                {field === "name" ? "Name" : "Email"}
+                {field === 'name' ? 'Name' : 'Email'}
               </label>
               <input
-                type={field === "email" ? "email" : "text"}
+                type={field === 'email' ? 'email' : 'text'}
                 id={field}
+                value={formData[field as 'name' | 'email']}
+                onChange={handleChange}
+                required
                 placeholder={`Your ${field}`}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500"
               />
@@ -77,10 +143,15 @@ export default function ContactPage() {
           ))}
 
           <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+            <label htmlFor="message" className="block text-sm font-medium mb-2">
+              Message
+            </label>
             <textarea
               id="message"
+              value={formData.message}
+              onChange={handleChange}
               rows={5}
+              required
               className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 resize-none"
               placeholder="Tell me about your project, timeline, and any specific requirements..."
             ></textarea>
@@ -88,10 +159,21 @@ export default function ContactPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md"
+            disabled={status === 'loading'}
+            className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md disabled:opacity-50"
           >
-            Send Message
+            {status === 'loading' ? 'Sending...' : 'Send Message'}
           </button>
+
+          {feedback && (
+            <p
+              className={`text-sm mt-2 text-center transition-opacity duration-500 ${
+                status === 'success' ? 'text-green-400' : 'text-red-400'
+              }`}
+            >
+              {feedback}
+            </p>
+          )}
         </form>
       </div>
     </div>
