@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 
 export default function ReviewsPage() {
@@ -6,6 +7,7 @@ export default function ReviewsPage() {
   const [formData, setFormData] = useState({ name: '', text: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [loading, setLoading] = useState(true); // controls page rendering
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -15,6 +17,8 @@ export default function ReviewsPage() {
         setReviews(data);
       } catch (err) {
         console.error('Error fetching reviews:', err);
+      } finally {
+        setLoading(false); // only now allow render
       }
     };
     fetchReviews();
@@ -44,6 +48,14 @@ export default function ReviewsPage() {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-900 text-gray-200 flex items-center justify-center">
+        <p className="text-gray-400 text-lg">Loading reviews...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-12 px-4 py-12 bg-gray-900 text-gray-200">
       <div className="text-center space-y-4">
@@ -52,18 +64,20 @@ export default function ReviewsPage() {
           See what my clients have to say about their experience working with me.
         </p>
       </div>
+
       <div className="grid md:grid-cols-2 gap-6">
-      {Array.isArray(reviews) && reviews.length > 0 ? (
-        reviews.map((review, i) => (
-          <div key={i} className="bg-gray-800 p-6 rounded-lg shadow-sm">
-            <div className="flex items-center mb-2 text-yellow-400 text-lg">⭐⭐⭐⭐⭐</div>
-            <p className="text-gray-300 mb-2 text-sm">"{review.text}"</p>
-            <p className="text-xs text-gray-400 font-medium">– {review.name}</p>
-          </div>
-        ))
-      ) : (
-        <p className="text-gray-400 text-m">No reviews yet — be the first to leave one!</p>
-      )}
+        {reviews.length > 0 ? (
+          reviews.map((review, i) => (
+            <div key={i} className="bg-gray-800 p-6 rounded-lg shadow-sm">
+              <p className="text-gray-300 mb-2 text-sm">"{review.text}"</p>
+              <p className="text-xs text-gray-400 font-medium">– {review.name}</p>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-400 text-m col-span-full">
+            No reviews yet — be the first to leave one!
+          </p>
+        )}
       </div>
 
       <div className="bg-blue-900 p-6 rounded-lg border-2 border-dashed border-blue-500 max-w-xl mx-auto">

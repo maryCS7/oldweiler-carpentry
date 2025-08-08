@@ -82,7 +82,7 @@ export default function ContactPage() {
               <span className="text-blue-400 text-xl">📞</span>
               <p><strong>Call or Text:</strong> (585) 734-5068</p>
             </div>
-            <div className="flex items-center space-x-3">
+            {/* <div className="flex items-center space-x-3">
               <span className="text-blue-400 text-xl">✉️</span>
               <p>
                 <strong>Email:</strong>{' '}
@@ -93,11 +93,11 @@ export default function ContactPage() {
                   aaronoldweile@gmail.com
                 </a>
               </p>
-            </div>
+            </div> */}
             <div className="flex items-center space-x-3">
               <span className="text-blue-400 text-xl">📍</span>
               <p>
-                <strong>Location:</strong> Based in Attica, NY — serving the surrounding areas
+                <strong>Location:</strong> Based in Bennington, NY — serving the surrounding areas
               </p>
             </div>
           </div>
@@ -105,15 +105,15 @@ export default function ContactPage() {
           {/* Map */}
           <div className="mt-6">
             <iframe
-              title="Attica NY Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11675.314661052455!2d-78.28005578787795!3d42.864865872969896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d2ac0f26b74e07%3A0xa927bbf607b93527!2sAttica%2C%20NY%2014044!5e0!3m2!1sen!2sus!4v1691508319430!5m2!1sen!2sus"
+              title="Oldweiler Custom Carpentry Location - Bennington, NY"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.045914775607!2d-78.39392848458716!3d42.87700717915578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d2ace5b3ea5e77%3A0x16c9d5a7ce122e17!2sBennington%2C%20NY%2014040!5e0!3m2!1sen!2sus!4v1723125399999!5m2!1sen!2sus"
               width="100%"
-              height="200"
+              height="250"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="rounded-lg"
+              className="rounded-lg shadow-md"
             ></iframe>
           </div>
         </div>

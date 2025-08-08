@@ -1,14 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { projects } from '@/data/projects';
 
 export default function GalleryPage() {
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const pathname = usePathname();
 
-  const images = Array.from({ length: 11 }, (_, i) => ({
-    src: `/gallery/project${i + 1}.jpg`,
-    alt: `Project ${i + 1}`,
-  }));
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const id = hash.replace('#', '');
+    let tries = 0;
+
+    const interval = setInterval(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        clearInterval(interval);
+      } else {
+        tries++;
+        if (tries > 20) clearInterval(interval);
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [pathname]);
 
   return (
     <div className="relative px-4 py-12 bg-gray-900 text-gray-200 text-center space-y-8">
@@ -20,13 +41,25 @@ export default function GalleryPage() {
         >
           <img
             src={lightboxImg}
-            alt=""
+            alt="Enlarged project"
             className="max-w-full max-h-[90vh] rounded-lg shadow-xl transition-transform duration-300"
           />
         </div>
       )}
 
-      {/* Title */}
+      {/* Optional: Back to Projects link */}
+      {typeof window !== 'undefined' && window.location.hash && (
+        <div className="text-left max-w-6xl mx-auto mb-4">
+          <a
+            href="/projects"
+            className="text-blue-400 underline hover:text-blue-300 transition text-sm"
+          >
+            ← Back to Projects
+          </a>
+        </div>
+      )}
+
+      {/* Header */}
       <div className="space-y-4">
         <h1 className="text-4xl font-bold text-blue-300">Project Gallery</h1>
         <p className="text-lg max-w-2xl mx-auto">
@@ -36,24 +69,26 @@ export default function GalleryPage() {
 
       {/* Gallery Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-        {images.map((img, index) => (
+        {projects.map((project, index) => (
           <div
+            id={project.slug}
             key={index}
-            className="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="scroll-mt-24 bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
             <button
-              onClick={() => setLightboxImg(img.src)}
+              onClick={() => setLightboxImg(project.galleryImage)}
               className="w-full h-64 focus:outline-none"
             >
               <img
-                src={img.src}
-                alt={img.alt}
+                src={project.galleryImage}
+                alt={project.title}
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </button>
 
-            {/* Image caption hidden for now */}
-            {/* <p className="p-3 text-sm text-gray-400">{img.alt}</p> */}
+            <div className="p-3 text-left">
+              <h3 className="text-md font-semibold text-white">{project.title}</h3>
+            </div>
           </div>
         ))}
       </div>
