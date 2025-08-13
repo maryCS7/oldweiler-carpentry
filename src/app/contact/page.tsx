@@ -35,10 +35,11 @@ export default function ContactPage() {
       if (res.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '', company: '' });
+        setFeedback('Message sent successfully!');
       } else {
         const data = await res.json();
         setStatus('error');
-        setFeedback(data.message || 'Failed to send message');
+        setFeedback(data.detail || data.message || 'Failed to send message');
       }
     } catch (error) {
       setStatus('error');
