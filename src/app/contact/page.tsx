@@ -26,7 +26,7 @@ export default function ContactPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_API_BASE_URL + '/contact/', {
+      const res = await fetch('https://oldweiler-api-production.up.railway.app/contact/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
