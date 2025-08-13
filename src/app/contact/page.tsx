@@ -32,11 +32,11 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
-      if (data.success) {
+      if (res.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '', company: '' });
       } else {
+        const data = await res.json();
         setStatus('error');
         setFeedback(data.message || 'Failed to send message');
       }
