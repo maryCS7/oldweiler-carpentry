@@ -1,20 +1,50 @@
 'use client';
 
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 export default function HomePage() {
+  const [currentProject, setCurrentProject] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Featured projects (all 12 from gallery)
+  const featuredProjects = [
+    { image: "/gallery/project1.jpg", title: "Custom Powder Room Cabinet", description: "Built-in wall cabinet with sliding bypass doors and floating shelf, crafted from poplar wood." },
+    { image: "/gallery/project2.JPG", title: "Custom Wood Sink Countertop", description: "Light wood countertop with an undermount sink designed for a small bathroom remodel." },
+    { image: "/gallery/project3.JPG", title: "Rolling Storage Box", description: "Durable custom plywood box on casters for mobile storage. Ideal for garage tools or workshop supplies." },
+    { image: "/gallery/project4.JPG", title: "Kitchen Pull-Out Pantry Drawers", description: "Tall kitchen pantry cabinet fitted with custom pull-out drawers to improve accessibility and maximize storage." },
+    { image: "/gallery/project5.jpg", title: "Modern Nightstands", description: "Pair of sleek custom-built nightstands with clean lines and smooth drawer action." },
+    { image: "/gallery/project6.JPG", title: "Shaker Style Kitchen Cabinets", description: "White kitchen cabinets in classic shaker style, fitted with soft-close hardware." },
+    { image: "/gallery/project7.JPG", title: "Interior Cabinet Shelving", description: "Adjustable shelving installed inside kitchen or pantry cabinets for flexible storage of dishware and supplies." },
+    { image: "/gallery/project8.JPG", title: "Barn Exterior Restoration", description: "Rustic barn exterior revitalized with updated trim and structural repairs. Focus on preserving character while improving durability." },
+    { image: "/gallery/project9.JPG", title: "Pergola Framing", description: "Large outdoor pergola with heavy timber and precise joinery, foundation and support structure." },
+    { image: "/gallery/project10.JPG", title: "Exterior Staircase Build", description: "Outdoor staircase built on sloped terrain, framed and supported for weather durability." },
+    { image: "/gallery/project11.JPG", title: "Custom Woodworking", description: "Precision craftsmanship in custom furniture and built-ins for your home." },
+    { image: "/gallery/project12.JPG", title: "Custom Project", description: "Another example of our custom carpentry work and attention to detail." }
+  ];
+
+  // Auto-rotate projects every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentProject((prev) => (prev + 1) % featuredProjects.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [featuredProjects.length]);
+
+  // Handle image load
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
+
+  // Preload first image for better UX
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = featuredProjects[0].image;
+    img.onload = () => setIsLoading(false);
+  }, []);
+
   return (
     <main className="min-h-screen bg-gray-900 text-gray-100">
-      {/* Navigation */}
-      <header className="sticky top-0 z-50 bg-gray-950 bg-opacity-90 backdrop-blur-md shadow-md">
-        <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-center gap-8 text-blue-300 font-medium">
-          <a href="/projects" className="hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500">Projects</a>
-          <a href="/gallery" className="hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500">Gallery</a>
-          <a href="/reviews" className="hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500">Reviews</a>
-          <a href="/contact" className="hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500">Contact</a>
-        </nav>
-      </header>
-
       {/* Hero */}
       <section className="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-16 md:py-24 bg-gradient-to-b from-[#0f172a] to-[#1e293b] overflow-hidden">
         {/* Background Pattern */}
@@ -36,28 +66,70 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fadeInUp" style={{animationDelay: '0.4s'}}>
             <a 
               href="/projects" 
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="group bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 transform hover:scale-105 active:scale-95"
             >
-              View Projects
+              <span className="flex items-center justify-center">
+                <span className="mr-2">View Projects</span>
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
             </a>
             <a 
               href="/contact" 
-              className="border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900 px-6 py-3 rounded-lg font-medium transition-all duration-200"
+              className="group border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/25 transform hover:scale-105 active:scale-95"
             >
-              Get Quote
+              <span className="flex items-center justify-center">
+                <span className="mr-2">Get Quote</span>
+                {/* <svg className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg> */}
+              </span>
             </a>
           </div>
         </div>
         
         <div className="relative mt-12 md:mt-0 md:w-1/2 flex justify-center animate-fadeInUp" style={{animationDelay: '0.6s'}}>
-          <div className="relative">
-            <img
-              src="/hero1.jpg"
-              alt="Custom carpentry workbench and tools"
-              className="w-full max-w-md md:max-w-lg rounded-xl shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-300"
-            />
-            {/* Decorative frame */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl opacity-20 blur-xl"></div>
+          {/* Project Carousel */}
+          <div className="relative w-full max-w-md md:max-w-lg">
+            {/* Carousel Container */}
+            <div className="relative overflow-hidden rounded-xl shadow-2xl">
+              {/* Project Images */}
+              <div className="relative h-80 bg-gray-800">
+                {/* Loading State */}
+                {isLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
+                    <div className="text-center text-gray-400">
+                      <div className="text-4xl mb-3">🏗️</div>
+                      <p className="text-sm">Loading project...</p>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Project Image */}
+                <img
+                  src={featuredProjects[currentProject].image}
+                  alt={featuredProjects[currentProject].title}
+                  className="w-full h-full object-cover transition-all duration-700 ease-in-out"
+                  onLoad={handleImageLoad}
+                />
+                
+                {/* Project Info Overlay - Cleaner */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
+                  <h3 className="text-base font-semibold text-white mb-1">
+                    {featuredProjects[currentProject].title}
+                  </h3>
+                  <p className="text-sm text-gray-200 leading-relaxed">
+                    {featuredProjects[currentProject].description}
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Enhanced decorative frame */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl opacity-20 blur-xl transition-all duration-500"></div>
+            {/* Subtle glow effect */}
+            <div className="absolute -inset-2 bg-blue-400 rounded-xl opacity-5 blur-md transition-all duration-500"></div>
           </div>
         </div>
       </section>
@@ -68,7 +140,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-semibold text-blue-300 mb-3">About</h2>
           <div className="h-1 w-12 bg-blue-500 mx-auto mb-6 rounded"></div>
           <p className="text-gray-300 text-lg leading-relaxed">
-            <strong>Oldweiler Custom Carpentry</strong> is a family-owned and operated business based in Bennington, NY, built on over 20 years of professional experience and a craft passed down through generations. With a background in engineering, the owner brings a unique blend of technical precision and hands-on skill to every project. Each piece is the result of careful planning, thoughtful design, and a deep commitment to quality—custom work that’s as functional as it is beautiful.
+            <strong>Oldweiler Custom Carpentry</strong> is a family-owned and operated business based in Bennington, NY, built on over 20 years of professional experience and a craft passed down through generations. With a background in engineering, I bring a unique blend of technical precision and hands-on skill to every project. Each piece is the result of careful planning, thoughtful design, and a deep commitment to quality—custom work that&apos;s as functional as it is beautiful.
           </p>
         </div>
       </section>
@@ -80,25 +152,25 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold text-blue-300 mb-4">Projects & Services</h2>
             <div className="h-1 w-16 bg-blue-500 mx-auto rounded-full mb-6"></div>
             <p className="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">
-              Specializing in custom woodworking and home renovations—from kitchens and built-ins to decks and storage solutions. Whether indoor or outdoor, every build is crafted with care and built to last.
+              From custom kitchens and built-ins to outdoor decks and storage solutions, I specialize in bringing your vision to life with precision craftsmanship. Every project is built with care, attention to detail, and the quality that lasts generations.
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-blue-500 transition-colors">
-              <div className="text-blue-400 text-3xl mb-4">🏠</div>
-              <h3 className="text-xl font-semibold text-blue-300 mb-2">Custom Woodworking</h3>
-              <p className="text-gray-300">Built-ins, cabinets, furniture, and custom pieces tailored to your space and style.</p>
+            <div className="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 transform hover:-translate-y-1 cursor-pointer">
+              <div className="text-blue-400 text-3xl mb-4 transition-transform duration-300 group-hover:scale-110">🏠</div>
+              <h3 className="text-xl font-semibold text-blue-300 mb-2 transition-colors duration-300 group-hover:text-blue-200">Custom Woodworking</h3>
+              <p className="text-gray-300 transition-colors duration-300 group-hover:text-gray-200">Built-ins, cabinets, furniture, and custom pieces tailored to your space and style.</p>
             </div>
-            <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-blue-500 transition-colors">
-              <div className="text-blue-400 text-3xl mb-4">🔨</div>
-              <h3 className="text-xl font-semibold text-blue-300 mb-2">Home Renovations</h3>
-              <p className="text-gray-300">Kitchens, bathrooms, and interior remodeling with attention to detail and quality.</p>
+            <div className="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 transform hover:-translate-y-1 cursor-pointer">
+              <div className="text-blue-400 text-3xl mb-4 transition-transform duration-300 group-hover:scale-110">🔨</div>
+              <h3 className="text-xl font-semibold text-blue-300 mb-2 transition-colors duration-300 group-hover:text-blue-200">Home Renovations</h3>
+              <p className="text-gray-300 transition-colors duration-300 group-hover:text-gray-200">Kitchens, bathrooms, and interior remodeling with attention to detail and quality.</p>
             </div>
-            <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-blue-500 transition-colors">
-              <div className="text-blue-400 text-3xl mb-4">🌳</div>
-              <h3 className="text-xl font-semibold text-blue-300 mb-2">Outdoor Projects</h3>
-              <p className="text-gray-300">Decks, pergolas, outdoor structures, and exterior woodworking solutions.</p>
+            <div className="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 transform hover:-translate-y-1 cursor-pointer">
+              <div className="text-blue-400 text-3xl mb-4 transition-transform duration-300 group-hover:scale-110">🌳</div>
+              <h3 className="text-xl font-semibold text-blue-300 mb-2 transition-colors duration-300 group-hover:text-blue-200">Outdoor Projects</h3>
+              <p className="text-gray-300 transition-colors duration-300 group-hover:text-gray-200">Decks, pergolas, outdoor structures, and exterior woodworking solutions.</p>
             </div>
           </div>
           
@@ -131,7 +203,7 @@ export default function HomePage() {
           <div className="bg-gray-900 p-8 rounded-xl border border-gray-800 mb-8">
             <div className="text-blue-400 text-6xl mb-4">📸</div>
             <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              Explore a curated gallery of finished work—from framing to final finishes, these projects reflect my commitment to craftsmanship and detail.
+              Explore a curated gallery of finished work—from initial framing to final finishes, each project showcases my commitment to craftsmanship, attention to detail, and the quality that makes every piece a lasting investment in your home.
             </p>
             <a
               href="/gallery"
@@ -149,7 +221,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-semibold text-blue-300 mb-3">Get in Touch</h2>
           <div className="h-1 w-12 bg-blue-500 mx-auto mb-6 rounded"></div>
           <p className="text-gray-300 mb-6 text-lg">
-            Ready to bring your vision to life? I’d love to hear more about your project.
+            Ready to transform your space with custom carpentry? Let&apos;s discuss your project and bring your vision to life with the quality and craftsmanship your home deserves.
           </p>
           <a
             href="/contact"

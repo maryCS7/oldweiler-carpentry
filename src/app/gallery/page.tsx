@@ -1,96 +1,99 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { projects } from '@/data/projects';
 
 export default function GalleryPage() {
-  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
-  const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    setMounted(true);
+  }, []);
 
-    const hash = window.location.hash;
-    if (!hash) return;
+  // Gallery images - using the same structure that works in Projects
+  const galleryImages = [
+    { src: "/gallery/project1.jpg", alt: "Custom Powder Room Cabinet" },
+    { src: "/gallery/project2.JPG", alt: "Custom Wood Sink Countertop" },
+    { src: "/gallery/project3.JPG", alt: "Rolling Storage Box" },
+    { src: "/gallery/project4.JPG", alt: "Kitchen Pull-Out Pantry Drawers" },
+    { src: "/gallery/project5.jpg", alt: "Modern Nightstands" },
+    { src: "/gallery/project6.JPG", alt: "Shaker Style Kitchen Cabinets" },
+    { src: "/gallery/project7.JPG", alt: "Interior Cabinet Shelving" },
+    { src: "/gallery/project8.JPG", alt: "Barn Exterior Restoration" },
+    { src: "/gallery/project9.JPG", alt: "Pergola Framing" },
+    { src: "/gallery/project10.JPG", alt: "Exterior Staircase Build" },
+    { src: "/gallery/project11.JPG", alt: "Custom Woodworking" },
+    { src: "/gallery/project12.JPG", alt: "Custom Project" }
+  ];
 
-    const id = hash.replace('#', '');
-    let tries = 0;
-
-    const interval = setInterval(() => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        clearInterval(interval);
-      } else {
-        tries++;
-        if (tries > 20) clearInterval(interval);
-      }
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [pathname]);
-
-  return (
-    <div className="relative px-4 py-12 bg-gray-900 text-gray-200 text-center space-y-8">
-      {/* Lightbox Overlay */}
-      {lightboxImg && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 cursor-zoom-out"
-          onClick={() => setLightboxImg(null)}
-        >
-          <img
-            src={lightboxImg}
-            alt="Enlarged project"
-            className="max-w-full max-h-[90vh] rounded-lg shadow-xl transition-transform duration-300"
-          />
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gray-900 text-gray-200">
+        <div className="bg-gray-950 border-b border-gray-800">
+          <div className="max-w-6xl mx-auto px-4 py-16 text-center">
+            <h1 className="text-5xl font-bold text-blue-300 mb-4">Photo Gallery</h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Browse through a collection of finished carpentry projects. Each image showcases the quality and craftsmanship of my work.
+            </p>
+          </div>
         </div>
-      )}
-
-      {/* Optional: Back to Projects link */}
-      {typeof window !== 'undefined' && window.location.hash && (
-        <div className="text-left max-w-6xl mx-auto mb-4">
-          <a
-            href="/projects"
-            className="text-blue-400 underline hover:text-blue-300 transition text-sm"
-          >
-            ← Back to Projects
-          </a>
-        </div>
-      )}
-
-      {/* Header */}
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold text-blue-300">Project Gallery</h1>
-        <p className="text-lg max-w-2xl mx-auto">
-          A visual showcase of recent carpentry & home improvement projects. Click any image to enlarge.
-        </p>
-      </div>
-
-      {/* Gallery Grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-        {projects.map((project, index) => (
-          <div
-            id={project.slug}
-            key={index}
-            className="scroll-mt-24 bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-          >
-            <button
-              onClick={() => setLightboxImg(project.galleryImage)}
-              className="w-full h-64 focus:outline-none"
-            >
-              <img
-                src={project.galleryImage}
-                alt={project.title}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </button>
-
-            <div className="p-3 text-left">
-              <h3 className="text-md font-semibold text-white">{project.title}</h3>
+        <div className="py-12 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {galleryImages.map((image, index) => (
+                <div key={index} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                  <div className="w-full h-64 bg-gray-700 flex items-center justify-center">
+                    <div className="text-center text-gray-400">
+                      <div className="text-4xl mb-2">🏗️</div>
+                      <p className="text-sm">Loading...</p>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-sm font-medium text-blue-200">{image.alt}</h3>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative min-h-screen bg-gray-900 text-gray-200">
+      {/* Header */}
+      <div className="bg-gray-950 border-b border-gray-800">
+        <div className="max-w-6xl mx-auto px-4 py-16 text-center">
+          <h1 className="text-5xl font-bold text-blue-300 mb-4">Photo Gallery</h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Browse through a collection of finished carpentry projects. Each image showcases the quality and craftsmanship of my work.
+          </p>
+        </div>
+      </div>
+
+      {/* Simple Grid Layout */}
+      <div className="py-12 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {galleryImages.map((image, index) => (
+              <div
+                key={index}
+                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg"
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-64 object-cover"
+                />
+                
+                {/* Image Info */}
+                <div className="p-4">
+                  <h3 className="text-sm font-medium text-blue-200">{image.alt}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
