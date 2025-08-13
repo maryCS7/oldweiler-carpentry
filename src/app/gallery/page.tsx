@@ -144,11 +144,11 @@ export default function GalleryPage() {
             {/* Close button */}
             <button
               onClick={closeModal}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors duration-200 z-10"
+              className="absolute -top-16 right-0 text-white bg-black bg-opacity-70 hover:bg-opacity-100 rounded-full p-3 transition-all duration-200 z-10 border-2 border-white hover:border-gray-300 hover:scale-110"
               aria-label="Close modal"
             >
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
             
@@ -161,8 +161,8 @@ export default function GalleryPage() {
             />
             
             {/* Image title */}
-            <div className="absolute -bottom-12 left-0 text-white text-center w-full">
-              <h3 className="text-lg font-medium">{selectedImage.alt}</h3>
+            <div className="absolute -bottom-16 left-0 text-white text-center w-full">
+              <h3 className="text-lg font-medium bg-black bg-opacity-70 px-4 py-2 rounded-lg">{selectedImage.alt}</h3>
             </div>
           </div>
         </div>
