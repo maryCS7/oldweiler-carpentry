@@ -137,14 +137,14 @@ export default function GalleryPage() {
       {/* Image Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-12"
           onClick={closeModal}
         >
-          <div className="relative max-w-4xl max-h-full">
+          <div className="relative max-w-2xl max-h-[75vh]">
             {/* Close button */}
             <button
               onClick={closeModal}
-              className="absolute -top-16 right-0 text-white bg-black bg-opacity-70 hover:bg-opacity-100 rounded-full p-3 transition-all duration-200 z-10 border-2 border-white hover:border-gray-300 hover:scale-110"
+              className="absolute -top-24 right-0 text-white bg-black bg-opacity-70 hover:bg-opacity-100 rounded-full p-3 transition-all duration-200 z-10 border-2 border-white hover:border-gray-300 hover:scale-110"
               aria-label="Close modal"
             >
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -161,7 +161,7 @@ export default function GalleryPage() {
             />
             
             {/* Image title */}
-            <div className="absolute -bottom-16 left-0 text-white text-center w-full">
+            <div className="absolute -bottom-24 left-0 text-white text-center w-full">
               <h3 className="text-lg font-medium bg-black bg-opacity-70 px-4 py-2 rounded-lg">{selectedImage.alt}</h3>
             </div>
           </div>
