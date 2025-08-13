@@ -11,7 +11,7 @@ export default function GalleryPage() {
 
   // Gallery images - using the same structure that works in Projects
   const galleryImages = [
-    { src: "/gallery/project1.jpg", alt: "Custom Powder Room Cabinet" },
+    { src: "/gallery/project1.JPG", alt: "Custom Powder Room Cabinet" },
     { src: "/gallery/project2.JPG", alt: "Custom Wood Sink Countertop" },
     { src: "/gallery/project3.JPG", alt: "Rolling Storage Box" },
     { src: "/gallery/project4.JPG", alt: "Kitchen Pull-Out Pantry Drawers" },
