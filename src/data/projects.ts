@@ -14,7 +14,7 @@ export const projects = [
     title: "Custom Powder Room Cabinet",
     description: "Built-in wall cabinet with sliding bypass doors and floating shelf, crafted from poplar wood.",
     tags: ["cabinets", "built-ins", "bathroom"],
-    galleryImage: "/gallery/project1.jpg",
+    galleryImage: "/gallery/project1.JPG",
   },
   {
     slug: "custom-wood-sink-countertop",

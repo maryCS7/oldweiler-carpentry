@@ -155,6 +155,16 @@ export default function ProjectsPage() {
                         src={project.galleryImage}
                         alt={project.title}
                         className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                        onError={(e) => {
+                          // Replace broken image with fallback
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          // Create fallback element
+                          const fallback = document.createElement('div');
+                          fallback.className = 'w-full h-48 bg-gray-700 flex items-center justify-center text-gray-400 text-sm';
+                          fallback.innerHTML = `🏗️ ${project.title}`;
+                          target.parentNode?.appendChild(fallback);
+                        }}
                       />
                     </div>
                   )}

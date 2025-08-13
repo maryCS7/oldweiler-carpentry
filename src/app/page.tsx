@@ -8,7 +8,7 @@ export default function HomePage() {
 
   // Featured projects (all 12 from gallery)
   const featuredProjects = [
-    { image: "/gallery/project1.jpg", title: "Custom Powder Room Cabinet", description: "Built-in wall cabinet with sliding bypass doors and floating shelf, crafted from poplar wood." },
+    { image: "/gallery/project1.JPG", title: "Custom Powder Room Cabinet", description: "Built-in wall cabinet with sliding bypass doors and floating shelf, crafted from poplar wood." },
     { image: "/gallery/project2.JPG", title: "Custom Wood Sink Countertop", description: "Light wood countertop with an undermount sink designed for a small bathroom remodel." },
     { image: "/gallery/project3.JPG", title: "Rolling Storage Box", description: "Durable custom plywood box on casters for mobile storage. Ideal for garage tools or workshop supplies." },
     { image: "/gallery/project4.JPG", title: "Kitchen Pull-Out Pantry Drawers", description: "Tall kitchen pantry cabinet fitted with custom pull-out drawers to improve accessibility and maximize storage." },
@@ -112,6 +112,16 @@ export default function HomePage() {
                   alt={featuredProjects[currentProject].title}
                   className="w-full h-full object-cover transition-all duration-700 ease-in-out"
                   onLoad={handleImageLoad}
+                  onError={(e) => {
+                    // Replace broken image with fallback
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    // Create fallback element
+                    const fallback = document.createElement('div');
+                    fallback.className = 'w-full h-full bg-gray-700 flex items-center justify-center text-gray-400 text-center p-4';
+                    fallback.innerHTML = `<div><div class="text-4xl mb-2">🏗️</div><p class="text-sm">${featuredProjects[currentProject].title}</p></div>`;
+                    target.parentNode?.appendChild(fallback);
+                  }}
                 />
                 
                 {/* Project Info Overlay - Cleaner */}
