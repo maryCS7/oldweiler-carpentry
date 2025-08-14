@@ -2,9 +2,21 @@
 
 import { useEffect, useState } from 'react';
 
+interface Review {
+  id: number;
+  name: string;
+  text: string;
+  rating?: number;
+  created_at: string;
+}
+
 export default function ReviewsPage() {
-  const [reviews, setReviews] = useState<{ name: string; email: string; text: string; rating?: number }[]>([]);
-  const [formData, setFormData] = useState({ name: '', email: '', text: '', rating: 5 });
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    text: '',
+    rating: 5
+  });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(true);
@@ -35,20 +47,6 @@ export default function ReviewsPage() {
       return;
     }
     
-    if (!formData.email.trim()) {
-      setErrorMsg('Email is required');
-      setStatus('error');
-      return;
-    }
-    
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email.trim())) {
-      setErrorMsg('Please enter a valid email address');
-      setStatus('error');
-      return;
-    }
-    
     if (!formData.text.trim() || formData.text.trim().length < 10) {
       setErrorMsg('Review must be at least 10 characters long');
       setStatus('error');
@@ -68,7 +66,6 @@ export default function ReviewsPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name.trim(),
-          email: formData.email.trim(),
           text: formData.text.trim(),
           rating: formData.rating
         }),
@@ -77,7 +74,7 @@ export default function ReviewsPage() {
       if (res.ok) {
         const newReview = await res.json();
         setReviews([newReview, ...reviews]);
-        setFormData({ name: '', email: '', text: '', rating: 5 });
+        setFormData({ name: '', text: '', rating: 5 });
         setStatus('success');
         setErrorMsg('');
       } else {
@@ -230,10 +227,6 @@ export default function ReviewsPage() {
                     <span className="mr-2">{formData.name.trim() ? '✅' : '❌'}</span>
                     Name
                   </div>
-                  <div className={`flex items-center ${formData.email.trim() ? 'text-green-400' : 'text-red-400'}`}>
-                    <span className="mr-2">{formData.email.trim() ? '✅' : '❌'}</span>
-                    Email
-                  </div>
                   <div className={`flex items-center ${formData.text.trim().length >= 10 ? 'text-green-400' : 'text-red-400'}`}>
                     <span className="mr-2">{formData.text.trim().length >= 10 ? '✅' : '❌'}</span>
                     Review (10+ chars)
@@ -291,24 +284,6 @@ export default function ReviewsPage() {
                   className="w-full px-4 py-3 rounded-xl bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200"
                   required
                 />
-              </div>
-
-              {/* Email Input */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Your Email <span className="text-red-400">*</span>
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email (e.g., example@example.com)"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200"
-                  required
-                />
-                <p className="text-xs text-gray-500 mt-1">We'll never share your email with anyone else</p>
               </div>
 
               {/* Review Text */}
