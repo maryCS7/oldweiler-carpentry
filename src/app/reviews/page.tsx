@@ -219,25 +219,6 @@ export default function ReviewsPage() {
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Form Validation Summary */}
-              <div className="bg-gray-800 p-4 rounded-xl border border-gray-700">
-                <h3 className="text-sm font-medium text-gray-300 mb-2">Required Fields:</h3>
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className={`flex items-center ${formData.name.trim() ? 'text-green-400' : 'text-red-400'}`}>
-                    <span className="mr-2">{formData.name.trim() ? '✅' : '❌'}</span>
-                    Name
-                  </div>
-                  <div className={`flex items-center ${formData.text.trim().length >= 10 ? 'text-green-400' : 'text-red-400'}`}>
-                    <span className="mr-2">{formData.text.trim().length >= 10 ? '✅' : '❌'}</span>
-                    Review (10+ chars)
-                  </div>
-                  <div className={`flex items-center ${formData.rating ? 'text-green-400' : 'text-red-400'}`}>
-                    <span className="mr-2">{formData.rating ? '✅' : '❌'}</span>
-                    Star Rating
-                  </div>
-                </div>
-              </div>
-
               {/* Star Rating Selection */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-3 text-center">
