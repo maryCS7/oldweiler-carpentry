@@ -13,7 +13,7 @@ export default function ReviewsPage() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch('https://oldweiler-api-production.up.railway.app/reviews');
+        const res = await fetch('https://oldweiler-api-production.up.railway.app/reviews/');
         const data = await res.json();
         setReviews(data);
       } catch (err) {
@@ -29,7 +29,7 @@ export default function ReviewsPage() {
     e.preventDefault();
     setStatus('loading');
     try {
-              const res = await fetch('https://oldweiler-api-production.up.railway.app/reviews', {
+      const res = await fetch('https://oldweiler-api-production.up.railway.app/reviews/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
