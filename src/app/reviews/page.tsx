@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 
 export default function ReviewsPage() {
-  const [reviews, setReviews] = useState<{ name: string; text: string; rating?: number }[]>([]);
-  const [formData, setFormData] = useState({ name: '', text: '', rating: 5 });
+  const [reviews, setReviews] = useState<{ name: string; email: string; text: string; rating?: number }[]>([]);
+  const [formData, setFormData] = useState({ name: '', email: '', text: '', rating: 5 });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(true);
@@ -27,21 +27,62 @@ export default function ReviewsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Client-side validation
+    if (!formData.name.trim()) {
+      setErrorMsg('Name is required');
+      setStatus('error');
+      return;
+    }
+    
+    if (!formData.email.trim()) {
+      setErrorMsg('Email is required');
+      setStatus('error');
+      return;
+    }
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      setErrorMsg('Please enter a valid email address');
+      setStatus('error');
+      return;
+    }
+    
+    if (!formData.text.trim() || formData.text.trim().length < 10) {
+      setErrorMsg('Review must be at least 10 characters long');
+      setStatus('error');
+      return;
+    }
+    
+    if (!formData.rating) {
+      setErrorMsg('Please select a star rating');
+      setStatus('error');
+      return;
+    }
+    
     setStatus('loading');
     try {
       const res = await fetch('https://oldweiler-api-production.up.railway.app/reviews/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          text: formData.text.trim(),
+          rating: formData.rating
+        }),
       });
 
       if (res.ok) {
         const newReview = await res.json();
         setReviews([newReview, ...reviews]);
-        setFormData({ name: '', text: '', rating: 5 });
+        setFormData({ name: '', email: '', text: '', rating: 5 });
         setStatus('success');
+        setErrorMsg('');
       } else {
-        throw new Error('Failed to submit review');
+        const errorData = await res.json();
+        throw new Error(errorData.detail || 'Failed to submit review');
       }
     } catch (error: unknown) {
       setStatus('error');
@@ -181,10 +222,33 @@ export default function ReviewsPage() {
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Rating Selection */}
-              <div className="text-center">
-                <label className="block text-sm font-medium text-gray-300 mb-4">
-                  How would you rate your experience? *
+              {/* Form Validation Summary */}
+              <div className="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <h3 className="text-sm font-medium text-gray-300 mb-2">Required Fields:</h3>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className={`flex items-center ${formData.name.trim() ? 'text-green-400' : 'text-red-400'}`}>
+                    <span className="mr-2">{formData.name.trim() ? '✅' : '❌'}</span>
+                    Name
+                  </div>
+                  <div className={`flex items-center ${formData.email.trim() ? 'text-green-400' : 'text-red-400'}`}>
+                    <span className="mr-2">{formData.email.trim() ? '✅' : '❌'}</span>
+                    Email
+                  </div>
+                  <div className={`flex items-center ${formData.text.trim().length >= 10 ? 'text-green-400' : 'text-red-400'}`}>
+                    <span className="mr-2">{formData.text.trim().length >= 10 ? '✅' : '❌'}</span>
+                    Review (10+ chars)
+                  </div>
+                  <div className={`flex items-center ${formData.rating ? 'text-green-400' : 'text-red-400'}`}>
+                    <span className="mr-2">{formData.rating ? '✅' : '❌'}</span>
+                    Star Rating
+                  </div>
+                </div>
+              </div>
+
+              {/* Star Rating Selection */}
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-3 text-center">
+                  Rate Your Experience <span className="text-red-400">*</span>
                 </label>
                 <div className="flex gap-3 justify-center">
                   {[1, 2, 3, 4, 5].map((rating) => (
@@ -205,12 +269,17 @@ export default function ReviewsPage() {
                 <p className="text-center text-sm text-gray-400 mt-3">
                   Selected: <span className="text-yellow-400 font-semibold">{formData.rating}</span> out of 5 stars
                 </p>
+                {!formData.rating && (
+                  <p className="text-center text-sm text-red-400 mt-2">
+                    Please select a star rating
+                  </p>
+                )}
               </div>
 
               {/* Name Input */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  Your Name *
+                  Your Name <span className="text-red-400">*</span>
                 </label>
                 <input
                   id="name"
@@ -224,10 +293,28 @@ export default function ReviewsPage() {
                 />
               </div>
 
+              {/* Email Input */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  Your Email <span className="text-red-400">*</span>
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email (e.g., example@example.com)"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200"
+                  required
+                />
+                <p className="text-xs text-gray-500 mt-1">We'll never share your email with anyone else</p>
+              </div>
+
               {/* Review Text */}
               <div>
                 <label htmlFor="text" className="block text-sm font-medium text-gray-300 mb-2">
-                  Your Review *
+                  Your Review <span className="text-red-400">*</span>
                 </label>
                 <textarea
                   id="text"
@@ -239,9 +326,14 @@ export default function ReviewsPage() {
                   className="w-full px-4 py-3 rounded-xl bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:border-blue-500 focus:outline-none transition-colors duration-200 resize-none"
                   required
                 />
-                <p className="text-right text-xs text-gray-500 mt-2">
-                  {formData.text.length}/500 characters
-                </p>
+                <div className="flex justify-between items-center mt-2">
+                  <p className="text-xs text-gray-500">
+                    Minimum 10 characters required
+                  </p>
+                  <p className={`text-xs ${formData.text.length < 10 ? 'text-red-400' : 'text-gray-500'}`}>
+                    {formData.text.length}/500 characters
+                  </p>
+                </div>
               </div>
 
               {/* Submit Button */}
