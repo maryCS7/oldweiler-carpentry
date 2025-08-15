@@ -1,24 +1,31 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { projects } from '@/data/projects';
+import { projects, Project } from '@/data/projects';
+
+// Type for gallery images that includes project data
+type GalleryImage = {
+  src: string;
+  alt: string;
+  project: Project;
+};
 
 export default function GalleryPage() {
   const [mounted, setMounted] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string; project: any } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   // Use projects data directly from projects.ts
-  const galleryImages = projects.map(project => ({
+  const galleryImages: GalleryImage[] = projects.map(project => ({
     src: project.galleryImage || '',
     alt: project.title,
     project: project // Keep reference to full project data
   }));
 
-  const openModal = (image: { src: string; alt: string; project: any }) => {
+  const openModal = (image: GalleryImage) => {
     setSelectedImage(image);
   };
 
