@@ -16,7 +16,7 @@ export default function GalleryPage() {
     { src: "/gallery/project2.JPG", alt: "Custom Wood Sink Countertop" },
     { src: "/gallery/project3.JPG", alt: "Rolling Storage Box" },
     { src: "/gallery/project4.JPG", alt: "Kitchen Pull-Out Pantry Drawers" },
-    { src: "/gallery/project5.JPG", alt: "Modern Nightstands" },
+    { src: "/gallery/project5.jpg", alt: "Modern Nightstands" },
     { src: "/gallery/project6.JPG", alt: "Shaker Style Kitchen Cabinets" },
     { src: "/gallery/project7.JPG", alt: "Interior Cabinet Shelving" },
     { src: "/gallery/project8.JPG", alt: "Barn Exterior Restoration" },

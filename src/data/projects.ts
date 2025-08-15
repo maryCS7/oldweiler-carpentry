@@ -41,7 +41,7 @@ export const projects = [
     title: "Modern Nightstands",
     description: "Pair of sleek custom-built nightstands with clean lines and smooth drawer action.",
     tags: ["furniture", "bedroom", "nightstands"],
-    galleryImage: "/gallery/project5.JPG",
+    galleryImage: "/gallery/project5.jpg",
   },
   {
     slug: "shaker-style-kitchen-cabinets",

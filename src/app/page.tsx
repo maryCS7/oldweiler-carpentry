@@ -12,7 +12,7 @@ export default function HomePage() {
     { image: "/gallery/project2.JPG", title: "Custom Wood Sink Countertop", description: "Light wood countertop with an undermount sink designed for a small bathroom remodel." },
     { image: "/gallery/project3.JPG", title: "Rolling Storage Box", description: "Durable custom plywood box on casters for mobile storage. Ideal for garage tools or workshop supplies." },
     { image: "/gallery/project4.JPG", title: "Kitchen Pull-Out Pantry Drawers", description: "Tall kitchen pantry cabinet fitted with custom pull-out drawers to improve accessibility and maximize storage." },
-    { image: "/gallery/project5.JPG", title: "Modern Nightstands", description: "Pair of sleek custom-built nightstands with clean lines and smooth drawer action." },
+    { image: "/gallery/project5.jpg", title: "Modern Nightstands", description: "Pair of sleek custom-built nightstands with clean lines and smooth drawer action." },
     { image: "/gallery/project6.JPG", title: "Shaker Style Kitchen Cabinets", description: "White kitchen cabinets in classic shaker style, fitted with soft-close hardware." },
     { image: "/gallery/project7.JPG", title: "Interior Cabinet Shelving", description: "Adjustable shelving installed inside kitchen or pantry cabinets for flexible storage of dishware and supplies." },
     { image: "/gallery/project8.JPG", title: "Barn Exterior Restoration", description: "Rustic barn exterior revitalized with updated trim and structural repairs. Focus on preserving character while improving durability." },
