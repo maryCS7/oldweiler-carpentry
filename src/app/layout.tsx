@@ -1,5 +1,4 @@
 import './globals.css';
-import Navigation from './components/Navigation';
 import FloatingButtons from './components/FloatingButtons';
 
 export const metadata = {
@@ -14,7 +13,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head />
       <body className="bg-[var(--color-background)] text-[var(--color-foreground)] font-sans antialiased">
-        <Navigation />
         <main>
           {children}
         </main>
