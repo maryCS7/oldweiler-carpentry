@@ -47,7 +47,7 @@ export default function HomePage() {
               <img 
                 src="/oldweiler-logo.png" 
                 alt="Oldweiler Custom Carpentry Logo" 
-                className="h-12 w-auto"
+                className="h-20 w-auto"
               />
               <span className="text-xl font-semibold text-blue-300">
                 Oldweiler Custom Carpentry
