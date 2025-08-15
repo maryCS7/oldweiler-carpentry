@@ -93,7 +93,7 @@ export const projects = [
     galleryImage: "/gallery/project12.JPG",
   },
 
-  // NEW PROJECTS (13–19)
+  // NEW PROJECTS (13–19) - Updated with correct file extensions
   {
     slug: "firewood-storage-shed",
     title: "Firewood Storage Shed",
