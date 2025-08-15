@@ -47,7 +47,7 @@ export default function HomePage() {
               <img 
                 src="/oldweiler-logo.png" 
                 alt="Oldweiler Custom Carpentry Logo" 
-                className="h-10 w-auto"
+                className="h-12 w-auto"
               />
               <span className="text-xl font-semibold text-blue-300">
                 Oldweiler Custom Carpentry
@@ -56,10 +56,10 @@ export default function HomePage() {
             
             {/* Navigation Links */}
             <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">Home</Link>
-              <Link href="/projects" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">Projects</Link>
-              <Link href="/gallery" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">Gallery</Link>
-              <Link href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">Contact</Link>
+              <Link href="/" className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200">Home</Link>
+              <Link href="/projects" className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200">Projects</Link>
+              <Link href="/gallery" className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200">Gallery</Link>
+              <Link href="/contact" className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200">Contact</Link>
             </nav>
             
             {/* Mobile Menu Button */}

@@ -61,21 +61,37 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-200">
-      {/* Header with Logo */}
+      {/* Header with Logo and Navigation */}
       <header className="bg-gray-950 border-b border-gray-800">
         <div className="max-w-6xl mx-auto px-4 py-4">
-                  <div className="flex items-center justify-center">
-          <div className="flex items-center space-x-3">
-            <img 
-              src="/oldweiler-logo.png" 
-              alt="Oldweiler Custom Carpentry Logo" 
-              className="h-16 w-auto"
-            />
-            <span className="text-2xl font-semibold text-blue-300">
-              Oldweiler Custom Carpentry
-            </span>
+          <div className="flex items-center justify-between">
+            {/* Logo and Company Name */}
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/oldweiler-logo.png" 
+                alt="Oldweiler Custom Carpentry Logo" 
+                className="h-20 w-auto"
+              />
+              <span className="text-2xl font-semibold text-blue-300">
+                Oldweiler Custom Carpentry
+              </span>
+            </div>
+            
+            {/* Navigation Links */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <Link href="/" className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200">Home</Link>
+              <Link href="/projects" className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200">Projects</Link>
+              <Link href="/gallery" className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200">Gallery</Link>
+              <Link href="/contact" className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200">Contact</Link>
+            </nav>
+            
+            {/* Mobile Menu Button */}
+            <button className="md:hidden text-gray-300 hover:text-blue-400">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
           </div>
-        </div>
         </div>
       </header>
 
