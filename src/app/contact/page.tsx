@@ -209,6 +209,16 @@ export default function ContactPage() {
                 </p>
               </div> */}
             </div>
+            
+            {/* Additional spacing to balance left and right columns */}
+            <div className="mt-8 space-y-4">
+              <div className="text-center">
+                <div className="text-blue-400 text-2xl mb-2">🏗️</div>
+                <p className="text-gray-400 text-sm">
+                  Ready to discuss your project? Fill out the form to get started.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Contact Form */}
