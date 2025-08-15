@@ -7,6 +7,8 @@ import { projects } from '@/data/projects';
 export default function ProjectsPage() {
   const [mounted, setMounted] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Ensure component is mounted before rendering
   useEffect(() => {
@@ -103,12 +105,51 @@ export default function ProjectsPage() {
             </nav>
             
             {/* Mobile Menu Button */}
-            <button className="md:hidden text-gray-300 hover:text-blue-400">
+            <button 
+              className="md:hidden text-gray-300 hover:text-blue-400 transition-colors duration-200"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </button>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <nav className="md:hidden mt-4 pb-4 border-t border-gray-800">
+              <div className="flex flex-col items-center space-y-3 pt-4">
+                <Link 
+                  href="/" 
+                  className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/projects" 
+                  className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Projects
+                </Link>
+                <Link 
+                  href="/gallery" 
+                  className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Gallery
+                </Link>
+                <Link 
+                  href="/contact" 
+                  className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+              </div>
+            </nav>
+          )}
         </div>
       </header>
 
@@ -135,24 +176,49 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      {/* Simple Filters */}
-      <div className="bg-gray-900 border-b border-gray-800 py-6">
+      {/* Collapsible Filters */}
+      <div className="bg-gray-900 border-b border-gray-800">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-wrap gap-2 justify-center">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-3 py-1.5 rounded text-sm font-medium transition-all duration-200 ${
-                  selectedCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                }`}
+          {/* Filter Toggle Button */}
+          <div className="py-4 flex justify-center">
+            <button
+              onClick={() => setFiltersOpen(!filtersOpen)}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-colors duration-200"
+            >
+              <span className="font-medium">
+                {filtersOpen ? 'Hide' : 'Show'} Filters
+              </span>
+              <svg 
+                className={`w-4 h-4 transition-transform duration-200 ${filtersOpen ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
               >
-                {category === 'all' ? 'All' : category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
-            ))}
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
           </div>
+
+          {/* Filter Options */}
+          {filtersOpen && (
+            <div className="py-6 border-t border-gray-800">
+              <div className="flex flex-wrap gap-2 justify-center">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-3 py-1.5 rounded text-sm font-medium transition-all duration-200 ${
+                      selectedCategory === category
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    }`}
+                  >
+                    {category === 'all' ? 'All' : category.charAt(0).toUpperCase() + category.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

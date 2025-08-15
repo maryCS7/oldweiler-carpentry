@@ -7,6 +7,7 @@ import Link from 'next/link';
 export default function HomePage() {
   const [currentProject, setCurrentProject] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Use projects data directly from projects.ts
   const featuredProjects = projects.map(project => ({
@@ -63,12 +64,51 @@ export default function HomePage() {
             </nav>
             
             {/* Mobile Menu Button */}
-            <button className="md:hidden text-gray-300 hover:text-blue-400">
+            <button 
+              className="md:hidden text-gray-300 hover:text-blue-400 transition-colors duration-200"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </button>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <nav className="md:hidden mt-4 pb-4 border-t border-gray-800">
+              <div className="flex flex-col items-center space-y-3 pt-4">
+                <Link 
+                  href="/" 
+                  className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/projects" 
+                  className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Projects
+                </Link>
+                <Link 
+                  href="/gallery" 
+                  className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Gallery
+                </Link>
+                <Link 
+                  href="/contact" 
+                  className="text-lg font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+              </div>
+            </nav>
+          )}
         </div>
       </header>
 
