@@ -65,15 +65,12 @@ export default function ContactPage() {
       <header className="bg-gray-950 border-b border-gray-800">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex items-center justify-center">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center">
               <img 
                 src="/oldweiler-logo.png" 
                 alt="Oldweiler Custom Carpentry Logo" 
                 className="h-16 w-auto"
               />
-              <span className="text-xl font-semibold text-blue-300">
-                Oldweiler Custom Carpentry
-              </span>
             </div>
           </div>
         </div>
@@ -401,7 +398,6 @@ export default function ContactPage() {
                 className="h-12 w-auto opacity-80"
               />
               <div>
-                <h3 className="text-lg font-semibold text-blue-300">Oldweiler Custom Carpentry</h3>
                 <p className="text-sm text-gray-400">Bennington, NY</p>
               </div>
             </div>

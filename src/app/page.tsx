@@ -43,15 +43,12 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center">
               <img 
                 src="/oldweiler-logo.png" 
                 alt="Oldweiler Custom Carpentry Logo" 
                 className="h-12 w-auto"
               />
-              <span className="text-lg font-semibold text-blue-300 hidden sm:block">
-                Oldweiler Custom Carpentry
-              </span>
             </div>
             
             {/* Navigation Links */}
@@ -281,7 +278,6 @@ export default function HomePage() {
                 className="h-12 w-auto opacity-80"
               />
               <div>
-                <h3 className="text-lg font-semibold text-blue-300">Oldweiler Custom Carpentry</h3>
                 <p className="text-sm text-gray-400">Bennington, NY</p>
               </div>
             </div>
