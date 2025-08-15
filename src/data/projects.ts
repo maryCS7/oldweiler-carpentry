@@ -57,16 +57,13 @@ export const projects = [
     tags: ["shelving", "kitchen", "storage"],
     galleryImage: "/gallery/project7.JPG",
   },
-
-  // UPDATED to match image: floating desk, not just shelf
   {
-    slug: "floating-desk-office",
-    title: "Custom Floating Desk",
-    description: "Wall-mounted wooden floating desk with clean modern lines, designed for a home office workspace.",
+    slug: "floating-shelf",
+    title: "Custom Floating Shelf",
+    description: "Wall-mounted wooden floating shelf with clean modern lines, designed for office or kitchen.",
     tags: ["desk", "office", "custom", "woodworking"],
     galleryImage: "/gallery/project8.JPG",
   },
-
   {
     slug: "pergola-framing",
     title: "Framing in progress",
