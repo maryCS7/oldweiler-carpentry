@@ -1,33 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { projects, Project } from '@/data/projects';
 
 export default function HomePage() {
   const [currentProject, setCurrentProject] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Featured projects (all 12 from gallery)
-  const featuredProjects = [
-    { image: "/gallery/project1.JPG", title: "Custom Powder Room Cabinet", description: "Built-in wall cabinet with sliding bypass doors and floating shelf, crafted from poplar wood." },
-    { image: "/gallery/project2.JPG", title: "Custom Wood Sink Countertop", description: "Light wood countertop with an undermount sink designed for a small bathroom remodel." },
-    { image: "/gallery/project3.JPG", title: "Rolling Storage Box", description: "Durable custom plywood box on casters for mobile storage. Ideal for garage tools or workshop supplies." },
-    { image: "/gallery/project4.JPG", title: "Kitchen Pull-Out Pantry Drawers", description: "Tall kitchen pantry cabinet fitted with custom pull-out drawers to improve accessibility and maximize storage." },
-    { image: "/gallery/project5.jpg", title: "Modern Nightstands", description: "Pair of sleek custom-built nightstands with clean lines and smooth drawer action." },
-    { image: "/gallery/project6.JPG", title: "Shaker Style Kitchen Cabinets", description: "White kitchen cabinets in classic shaker style, fitted with soft-close hardware." },
-    { image: "/gallery/project7.JPG", title: "Interior Cabinet Shelving", description: "Adjustable shelving installed inside kitchen or pantry cabinets for flexible storage of dishware and supplies." },
-    { image: "/gallery/project8.JPG", title: "Barn Exterior Restoration", description: "Rustic barn exterior revitalized with updated trim and structural repairs. Focus on preserving character while improving durability." },
-    { image: "/gallery/project9.JPG", title: "Pergola Framing", description: "Large outdoor pergola with heavy timber and precise joinery, foundation and support structure." },
-    { image: "/gallery/project10.JPG", title: "Exterior Staircase Build", description: "Outdoor staircase built on sloped terrain, framed and supported for weather durability." },
-    { image: "/gallery/project11.JPG", title: "Custom Woodworking", description: "Precision craftsmanship in custom furniture and built-ins for your home." },
-    { image: "/gallery/project12.JPG", title: "Custom Project", description: "Another example of our custom carpentry work and attention to detail." },
-    { image: "/gallery/project13.JPG", title: "Firewood Storage Shed", description: "Open-air firewood shed with slatted siding and pitched roof for airflow and weather protection." },
-    { image: "/gallery/project14.JPG", title: "Elevated Deck & Staircase", description: "Small backyard deck with privacy wall and custom staircase for safe outdoor access." },
-    { image: "/gallery/project15.JPG", title: "Kitchen Cabinet Upgrade", description: "Custom cherry kitchen cabinets with crown molding and trim, built for a timeless style." },
-    { image: "/gallery/project16.JPG", title: "Custom Composite Bench", description: "Durable composite bench framed in treated lumber, integrated into an outdoor deck." },
-    { image: "/gallery/project17.JPG", title: "Hallway Built-Ins", description: "Custom built-in storage with cubbies, cabinets, and natural wood countertop for a modern hallway upgrade." },
-    { image: "/gallery/project18.JPG", title: "Outdoor Stage Platform", description: "Large raised deck platform with composite flooring and built-in bench for events and gatherings." },
-    { image: "/gallery/project19.JPG", title: "Blue Kitchen Cabinets", description: "Custom kitchen remodel with bright blue cabinetry, wood countertops, and modern hardware." }
-  ];
+  // Use projects data directly from projects.ts
+  const featuredProjects = projects.map(project => ({
+    image: project.galleryImage || '',
+    title: project.title,
+    description: project.description
+  }));
 
   // Auto-rotate projects every 4 seconds
   useEffect(() => {
