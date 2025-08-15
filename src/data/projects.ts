@@ -141,5 +141,4 @@ export const projects = [
     tags: ["bench", "deck", "outdoor"],
     galleryImage: "/gallery/project19.JPG",
   }
-
 ];

@@ -1,39 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { projects } from '@/data/projects';
 
 export default function GalleryPage() {
   const [mounted, setMounted] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string; project: any } | null>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Gallery images - using the same structure that works in Projects
-  const galleryImages = [
-    { src: "/gallery/project1.JPG", alt: "Custom Powder Room Cabinet" },
-    { src: "/gallery/project2.JPG", alt: "Custom Wood Sink Countertop" },
-    { src: "/gallery/project3.JPG", alt: "Rolling Storage Box" },
-    { src: "/gallery/project4.JPG", alt: "Kitchen Pull-Out Pantry Drawers" },
-    { src: "/gallery/project5.jpg", alt: "Modern Nightstands" },
-    { src: "/gallery/project6.JPG", alt: "Shaker Style Kitchen Cabinets" },
-    { src: "/gallery/project7.JPG", alt: "Interior Cabinet Shelving" },
-    { src: "/gallery/project8.JPG", alt: "Barn Exterior Restoration" },
-    { src: "/gallery/project9.JPG", alt: "Pergola Framing" },
-    { src: "/gallery/project10.JPG", alt: "Exterior Staircase Build" },
-    { src: "/gallery/project11.JPG", alt: "Custom Woodworking" },
-    { src: "/gallery/project12.JPG", alt: "Custom Project" },
-    { src: "/gallery/project13.JPG", alt: "Firewood Storage Shed" },
-    { src: "/gallery/project14.JPG", alt: "Elevated Deck & Staircase" },
-    { src: "/gallery/project15.JPG", alt: "Kitchen Cabinet Upgrade" },
-    { src: "/gallery/project16.JPG", alt: "Custom Composite Bench" },
-    { src: "/gallery/project17.JPG", alt: "Hallway Built-Ins" },
-    { src: "/gallery/project18.JPG", alt: "Outdoor Stage Platform" },
-    { src: "/gallery/project19.JPG", alt: "Blue Kitchen Cabinets" }
-  ];
+  // Use projects data directly from projects.ts
+  const galleryImages = projects.map(project => ({
+    src: project.galleryImage || '',
+    alt: project.title,
+    project: project // Keep reference to full project data
+  }));
 
-  const openModal = (image: { src: string; alt: string }) => {
+  const openModal = (image: { src: string; alt: string; project: any }) => {
     setSelectedImage(image);
   };
 
@@ -167,9 +152,14 @@ export default function GalleryPage() {
               onClick={(e) => e.stopPropagation()}
             />
             
-            {/* Image title */}
+            {/* Image title and description */}
             <div className="absolute -bottom-24 left-0 text-white text-center w-full">
-              <h3 className="text-lg font-medium bg-black bg-opacity-70 px-4 py-2 rounded-lg">{selectedImage.alt}</h3>
+              <h3 className="text-lg font-medium bg-black bg-opacity-70 px-4 py-2 rounded-lg mb-2">{selectedImage.alt}</h3>
+              {selectedImage.project?.description && (
+                <p className="text-sm bg-black bg-opacity-70 px-4 py-2 rounded-lg max-w-md mx-auto">
+                  {selectedImage.project.description}
+                </p>
+              )}
             </div>
           </div>
         </div>
