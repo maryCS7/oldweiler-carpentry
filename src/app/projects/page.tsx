@@ -81,15 +81,18 @@ export default function ProjectsPage() {
       {/* Header with Logo */}
       <header className="bg-gray-950 border-b border-gray-800">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-center">
-            <div className="flex items-center">
-              <img 
-                src="/oldweiler-logo.png" 
-                alt="Oldweiler Custom Carpentry Logo" 
-                className="h-16 w-auto"
-              />
-            </div>
+                  <div className="flex items-center justify-center">
+          <div className="flex items-center space-x-3">
+            <img 
+              src="/oldweiler-logo.png" 
+              alt="Oldweiler Custom Carpentry Logo" 
+              className="h-16 w-auto"
+            />
+            <span className="text-2xl font-semibold text-blue-300">
+              Oldweiler Custom Carpentry
+            </span>
           </div>
+        </div>
         </div>
       </header>
 

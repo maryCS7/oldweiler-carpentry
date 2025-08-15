@@ -42,13 +42,16 @@ export default function HomePage() {
       <header className="bg-gray-950 border-b border-gray-800 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center">
+            {/* Logo and Company Name */}
+            <div className="flex items-center space-x-3">
               <img 
                 src="/oldweiler-logo.png" 
                 alt="Oldweiler Custom Carpentry Logo" 
-                className="h-12 w-auto"
+                className="h-10 w-auto"
               />
+              <span className="text-xl font-semibold text-blue-300">
+                Oldweiler Custom Carpentry
+              </span>
             </div>
             
             {/* Navigation Links */}
@@ -79,10 +82,10 @@ export default function HomePage() {
         <div className="relative text-center md:text-left md:w-1/2 space-y-6">
           <div className="space-y-4">
             <h1 className="text-5xl md:text-6xl font-bold text-blue-400 leading-tight animate-fadeInUp">
-              Oldweiler Custom Carpentry
+              Precision. Craft. Care.
             </h1>
             <p className="text-xl text-gray-300 animate-fadeInUp" style={{animationDelay: '0.2s'}}>
-              Precision. Craft. Care. Built local.
+              Built local with exceptional quality.
             </p>
           </div>
           
