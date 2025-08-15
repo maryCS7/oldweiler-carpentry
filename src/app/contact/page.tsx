@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -59,9 +60,28 @@ export default function ContactPage() {
   }, [feedback]);
 
   return (
-    <div className="space-y-12 px-4 py-12 bg-gray-900 text-gray-200">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-blue-300">Contact Me</h1>
+    <div className="min-h-screen bg-gray-900 text-gray-200">
+      {/* Header with Logo */}
+      <header className="bg-gray-950 border-b border-gray-800">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-center">
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/oldweiler-logo.png" 
+                alt="Oldweiler Custom Carpentry Logo" 
+                className="h-16 w-auto"
+              />
+              <span className="text-xl font-semibold text-blue-300">
+                Oldweiler Custom Carpentry
+              </span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="space-y-12 px-4 py-12">
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold text-blue-300">Contact Me</h1>
         <p className="text-lg max-w-2xl mx-auto">
           Have a carpentry project in mind? I&apos;d love to hear about it! With over 20 years of experience serving Bennington, NY and surrounding areas, I specialize in custom work that brings your vision to life. Whether you have a clear idea or just want to explore possibilities, let&apos;s chat about what we could create together.
         </p>
@@ -368,6 +388,41 @@ export default function ContactPage() {
           </form>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-950 border-t border-gray-800 py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            {/* Logo and Company Info */}
+            <div className="flex items-center space-x-4 mb-6 md:mb-0">
+              <img 
+                src="/oldweiler-logo.png" 
+                alt="Oldweiler Custom Carpentry Logo" 
+                className="h-12 w-auto opacity-80"
+              />
+              <div>
+                <h3 className="text-lg font-semibold text-blue-300">Oldweiler Custom Carpentry</h3>
+                <p className="text-sm text-gray-400">Bennington, NY</p>
+              </div>
+            </div>
+            
+            {/* Quick Links */}
+            <div className="flex space-x-6 text-sm">
+              <Link href="/" className="text-gray-400 hover:text-blue-400 transition-colors">Home</Link>
+              <Link href="/projects" className="text-gray-400 hover:text-blue-400 transition-colors">Projects</Link>
+              <Link href="/gallery" className="text-gray-400 hover:text-blue-400 transition-colors">Gallery</Link>
+              <Link href="/contact" className="text-gray-400 hover:text-blue-400 transition-colors">Contact</Link>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p className="text-gray-500 text-sm">
+              © 2024 Oldweiler Custom Carpentry. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
+  </div>
   );
 }

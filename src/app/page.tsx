@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { projects, Project } from '@/data/projects';
+import { projects } from '@/data/projects';
+import Link from 'next/link';
 
 export default function HomePage() {
   const [currentProject, setCurrentProject] = useState(0);
@@ -37,6 +38,40 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-gray-900 text-gray-100">
+      {/* Header Navigation */}
+      <header className="bg-gray-950 border-b border-gray-800 sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/oldweiler-logo.png" 
+                alt="Oldweiler Custom Carpentry Logo" 
+                className="h-12 w-auto"
+              />
+              <span className="text-lg font-semibold text-blue-300 hidden sm:block">
+                Oldweiler Custom Carpentry
+              </span>
+            </div>
+            
+            {/* Navigation Links */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">Home</Link>
+              <Link href="/projects" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">Projects</Link>
+              <Link href="/gallery" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">Gallery</Link>
+              <Link href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">Contact</Link>
+            </nav>
+            
+            {/* Mobile Menu Button */}
+            <button className="md:hidden text-gray-300 hover:text-blue-400">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
       {/* Hero */}
       <section className="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-16 md:py-24 bg-gradient-to-b from-[#0f172a] to-[#1e293b] overflow-hidden">
         {/* Background Pattern */}
@@ -45,6 +80,15 @@ export default function HomePage() {
         </div>
         
         <div className="relative text-center md:text-left md:w-1/2 space-y-6">
+          {/* Logo */}
+          <div className="flex justify-center md:justify-start mb-6 animate-fadeInUp">
+            <img 
+              src="/oldweiler-logo.png" 
+              alt="Oldweiler Custom Carpentry Logo" 
+              className="h-24 md:h-32 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+            />
+          </div>
+          
           <div className="space-y-4">
             <h1 className="text-5xl md:text-6xl font-bold text-blue-400 leading-tight animate-fadeInUp">
               Oldweiler Custom Carpentry
@@ -233,6 +277,40 @@ export default function HomePage() {
           </a>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-950 border-t border-gray-800 py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            {/* Logo and Company Info */}
+            <div className="flex items-center space-x-4 mb-6 md:mb-0">
+              <img 
+                src="/oldweiler-logo.png" 
+                alt="Oldweiler Custom Carpentry Logo" 
+                className="h-12 w-auto opacity-80"
+              />
+              <div>
+                <h3 className="text-lg font-semibold text-blue-300">Oldweiler Custom Carpentry</h3>
+                <p className="text-sm text-gray-400">Bennington, NY</p>
+              </div>
+            </div>
+            
+            {/* Quick Links */}
+            <div className="flex space-x-6 text-sm">
+              <Link href="/" className="text-gray-400 hover:text-blue-400 transition-colors">Home</Link>
+              <Link href="/projects" className="text-gray-400 hover:text-blue-400 transition-colors">Projects</Link>
+              <Link href="/gallery" className="text-gray-400 hover:text-blue-400 transition-colors">Gallery</Link>
+              <Link href="/contact" className="text-gray-400 hover:text-blue-400 transition-colors">Contact</Link>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p className="text-gray-500 text-sm">
+              © 2024 Oldweiler Custom Carpentry. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
