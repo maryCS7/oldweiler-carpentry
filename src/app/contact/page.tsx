@@ -63,7 +63,7 @@ export default function ContactPage() {
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-blue-300">Contact Me</h1>
         <p className="text-lg max-w-2xl mx-auto">
-          Ready to transform your space with custom carpentry? With over 20 years of experience serving Bennington, NY and surrounding areas, I specialize in bringing your vision to life through precision craftsmanship. From custom cabinets to outdoor structures, let&apos;s discuss how we can create something beautiful together.
+          Have a carpentry project in mind? I&apos;d love to hear about it! With over 20 years of experience serving Bennington, NY and surrounding areas, I specialize in custom work that brings your vision to life. Whether you have a clear idea or just want to explore possibilities, let&apos;s chat about what we could create together.
         </p>
       </div>
 
@@ -83,9 +83,9 @@ export default function ContactPage() {
 
           {/* Enhanced Map with Service Area */}
           <div className="mt-6">
-            <h3 className="text-lg font-semibold text-blue-200 mb-3">Service Area & Location</h3>
+            <h3 className="text-lg font-semibold text-blue-200 mb-3">Service Area</h3>
             <p className="text-gray-300 text-sm mb-4">
-              I travel to your location for all projects within approximately one hour driving distance.
+              I travel to your location for projects within approximately one hour driving distance.
             </p>
             
             {/* Google Maps */}
@@ -124,12 +124,12 @@ export default function ContactPage() {
             
             {/* Service Area Details */}
             <div className="mt-6">
-              <h4 className="text-lg font-semibold text-blue-200 mb-3">Service Coverage Areas</h4>
+              <h4 className="text-lg font-semibold text-blue-200 mb-3">Coverage Areas</h4>
               
               {/* Quick Service Area Reference */}
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="space-y-2">
-                  <div className="text-blue-200 font-medium text-sm">Primary Service Area:</div>
+                  <div className="text-blue-200 font-medium text-sm">Primary:</div>
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2 p-2 rounded-lg transition-all duration-200 hover:bg-blue-900 hover:bg-opacity-30 hover:scale-[1.02]">
                       <span className="text-green-400">●</span>
@@ -151,7 +151,7 @@ export default function ContactPage() {
                 </div>
                 
                 <div className="space-y-2">
-                  <div className="text-blue-200 font-medium text-sm">Extended Service Area:</div>
+                  <div className="text-blue-200 font-medium text-sm">Extended:</div>
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2 p-2 rounded-lg transition-all duration-200 hover:bg-blue-900 hover:bg-opacity-30 hover:scale-[1.02]">
                       <span className="text-green-400">●</span>
@@ -175,7 +175,7 @@ export default function ContactPage() {
               
               <div className="mt-4 p-3 bg-blue-900 bg-opacity-30 rounded-lg border border-blue-700">
                 <p className="text-blue-200 text-sm">
-                  <strong>💡 Service Note:</strong>  For projects outside this area, contact me to discuss travel arrangements and project scope.
+                  <strong>💡 Note:</strong> For projects outside this area, contact me to discuss travel arrangements.
                 </p>
               </div>
             </div>
@@ -184,11 +184,11 @@ export default function ContactPage() {
 
         {/* Right Side - Contact Info + Form */}
         <div className="space-y-6">
-          {/* Get in Touch Section */}
+          {/* Contact Information */}
           <div className="bg-gray-800 p-6 rounded-lg">
-            <h2 className="text-2xl font-semibold text-blue-200">Get in Touch</h2>
+            <h2 className="text-2xl font-semibold text-blue-200">Contact Information</h2>
             <p className="text-gray-300">
-              I&apos;m happy to chat about your ideas and answer any questions. As a local craftsman with over two decades of experience, I understand the unique needs of Western New York homes and can provide personalized solutions for your space.
+              I&apos;m happy to chat about your ideas and answer any questions. As a local craftsman, I understand the unique needs of Western New York homes and can provide personalized solutions for your space.
             </p>
 
             <div className="space-y-4 mt-4">
@@ -216,7 +216,7 @@ export default function ContactPage() {
             onSubmit={handleSubmit}
             className="space-y-6 bg-gray-800 p-6 rounded-lg"
           >
-            <h2 className="text-2xl font-semibold text-blue-200">Start Your Project</h2>
+            <h2 className="text-2xl font-semibold text-blue-200">Get In Touch</h2>
             
             {/* Name Field */}
             <div className="group">
@@ -263,7 +263,7 @@ export default function ContactPage() {
                 required
                 rows={6}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-500 focus:bg-gray-600 transform hover:scale-[1.02] resize-none"
-                placeholder="Tell me about your project: What are you looking to build or renovate? What's your timeline? Any specific materials or style preferences? I'll get back to you within 48 hours to discuss your vision."
+                placeholder="Tell me about your project idea: What are you thinking about building or renovating? What's your timeline? Any specific materials or style preferences? Don't worry if you're not sure about all the details - I'll get back to you within 48 hours to chat about your vision."
                 value={formData.message}
                 onChange={handleChange}
               />
@@ -323,7 +323,7 @@ export default function ContactPage() {
                   Try Again
                 </span>
               ) : (
-                'Start My Project Consultation'
+                'Send Message'
               )}
             </button>
 
