@@ -186,7 +186,7 @@ export default function ContactPage() {
         <div className="space-y-6">
           {/* Contact Information */}
           <div className="bg-gray-800 p-6 rounded-lg">
-            <h2 className="text-2xl font-semibold text-blue-200">Contact Information</h2>
+            <h2 className="text-2xl font-semibold text-blue-200 mb-4">Contact Information</h2>
             <p className="text-gray-300">
               I&apos;m happy to chat about your ideas and answer any questions. As a local craftsman, I understand the unique needs of Western New York homes and can provide personalized solutions for your space.
             </p>
@@ -211,7 +211,7 @@ export default function ContactPage() {
             </div>
             
             {/* Additional spacing to balance left and right columns */}
-            <div className="mt-8 space-y-4">
+            <div className="mt-6 space-y-4">
               <div className="text-center">
                 <div className="text-blue-400 text-2xl mb-2">🏗️</div>
                 <p className="text-gray-400 text-sm">
