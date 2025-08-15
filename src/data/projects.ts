@@ -81,19 +81,17 @@ export const projects = [
   {
     slug: "custom-woodworking",
     title: "Custom Woodworking",
-    description: "Precision craftsmanship in custom furniture and built-ins for your home.",
+    description: "Handcrafted wooden furniture and custom built-ins showcasing traditional joinery techniques.",
     tags: ["custom", "furniture", "woodworking"],
     galleryImage: "/gallery/project11.JPG",
   },
   {
     slug: "custom-project",
     title: "Custom Project",
-    description: "Another example of our custom carpentry work and attention to detail.",
+    description: "Specialized carpentry work demonstrating attention to detail and quality craftsmanship.",
     tags: ["custom", "woodworking"],
     galleryImage: "/gallery/project12.JPG",
   },
-
-  // NEW PROJECTS (13–19) - Updated with correct file extensions
   {
     slug: "firewood-storage-shed",
     title: "Firewood Storage Shed",
@@ -102,10 +100,10 @@ export const projects = [
     galleryImage: "/gallery/project13.JPG",
   },
   {
-    slug: "elevated-deck-staircase",
-    title: "Elevated Deck & Staircase",
-    description: "Small backyard deck with privacy wall and custom staircase for safe outdoor access.",
-    tags: ["deck", "stairs", "outdoor"],
+    slug: "blue-kitchen-cabinets",
+    title: "Blue Kitchen Cabinets",
+    description: "Custom kitchen remodel with bright blue cabinetry, wood countertops, and modern hardware.",
+    tags: ["kitchen", "cabinets", "remodel"],
     galleryImage: "/gallery/project14.JPG",
   },
   {
@@ -116,10 +114,10 @@ export const projects = [
     galleryImage: "/gallery/project15.JPG",
   },
   {
-    slug: "custom-composite-bench",
-    title: "Custom Composite Bench",
-    description: "Durable composite bench framed in treated lumber, integrated into an outdoor deck.",
-    tags: ["bench", "deck", "outdoor"],
+    slug: "elevated-deck-staircase",
+    title: "Elevated Deck & Staircase",
+    description: "Small backyard deck with privacy wall and custom staircase for safe outdoor access.",
+    tags: ["deck", "stairs", "outdoor"],
     galleryImage: "/gallery/project16.JPG",
   },
   {
@@ -137,10 +135,11 @@ export const projects = [
     galleryImage: "/gallery/project18.JPG",
   },
   {
-    slug: "blue-kitchen-cabinets",
-    title: "Blue Kitchen Cabinets",
-    description: "Custom kitchen remodel with bright blue cabinetry, wood countertops, and modern hardware.",
-    tags: ["kitchen", "cabinets", "remodel"],
+    slug: "custom-composite-bench",
+    title: "Custom Composite Bench",
+    description: "Durable composite bench framed in treated lumber, integrated into an outdoor deck.",
+    tags: ["bench", "deck", "outdoor"],
     galleryImage: "/gallery/project19.JPG",
-  },
+  }
+
 ];
