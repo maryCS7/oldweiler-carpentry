@@ -1,12 +1,11 @@
 export type Project = {
-    slug: string;
-    title: string;
-    description: string;
-    date?: string;
-    tags?: string[];
-    galleryImage?: string;
-  };
-  
+  slug: string;
+  title: string;
+  description: string;
+  date?: string;
+  tags?: string[];
+  galleryImage?: string;
+};
 
 export const projects = [
   {
@@ -42,7 +41,7 @@ export const projects = [
     title: "Modern Nightstands",
     description: "Pair of sleek custom-built nightstands with clean lines and smooth drawer action.",
     tags: ["furniture", "bedroom", "nightstands"],
-    galleryImage: "/gallery/project5.jpg",
+    galleryImage: "/gallery/project5.JPG",
   },
   {
     slug: "shaker-style-kitchen-cabinets",
@@ -92,5 +91,56 @@ export const projects = [
     description: "Another example of our custom carpentry work and attention to detail.",
     tags: ["custom", "woodworking"],
     galleryImage: "/gallery/project12.JPG",
+  },
+
+  // NEW PROJECTS (13–19)
+  {
+    slug: "firewood-storage-shed",
+    title: "Firewood Storage Shed",
+    description: "Open-air firewood shed with slatted siding and pitched roof for airflow and weather protection.",
+    tags: ["outdoor", "shed", "storage"],
+    galleryImage: "/gallery/project13.JPG",
+  },
+  {
+    slug: "elevated-deck-staircase",
+    title: "Elevated Deck & Staircase",
+    description: "Small backyard deck with privacy wall and custom staircase for safe outdoor access.",
+    tags: ["deck", "stairs", "outdoor"],
+    galleryImage: "/gallery/project14.JPG",
+  },
+  {
+    slug: "kitchen-cabinet-upgrade",
+    title: "Kitchen Cabinet Upgrade",
+    description: "Custom cherry kitchen cabinets with crown molding and trim, built for a timeless style.",
+    tags: ["kitchen", "cabinets", "woodwork"],
+    galleryImage: "/gallery/project15.JPG",
+  },
+  {
+    slug: "custom-composite-bench",
+    title: "Custom Composite Bench",
+    description: "Durable composite bench framed in treated lumber, integrated into an outdoor deck.",
+    tags: ["bench", "deck", "outdoor"],
+    galleryImage: "/gallery/project16.JPG",
+  },
+  {
+    slug: "hallway-built-ins",
+    title: "Hallway Built-Ins",
+    description: "Custom built-in storage with cubbies, cabinets, and natural wood countertop for a modern hallway upgrade.",
+    tags: ["built-ins", "storage", "hallway"],
+    galleryImage: "/gallery/project17.JPG",
+  },
+  {
+    slug: "outdoor-stage-platform",
+    title: "Outdoor Stage Platform",
+    description: "Large raised deck platform with composite flooring and built-in bench for events and gatherings.",
+    tags: ["outdoor", "deck", "stage"],
+    galleryImage: "/gallery/project18.JPG",
+  },
+  {
+    slug: "blue-kitchen-cabinets",
+    title: "Blue Kitchen Cabinets",
+    description: "Custom kitchen remodel with bright blue cabinetry, wood countertops, and modern hardware.",
+    tags: ["kitchen", "cabinets", "remodel"],
+    galleryImage: "/gallery/project19.JPG",
   },
 ];
