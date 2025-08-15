@@ -80,15 +80,6 @@ export default function HomePage() {
         </div>
         
         <div className="relative text-center md:text-left md:w-1/2 space-y-6">
-          {/* Logo */}
-          <div className="flex justify-center md:justify-start mb-6 animate-fadeInUp">
-            <img 
-              src="/oldweiler-logo.png" 
-              alt="Oldweiler Custom Carpentry Logo" 
-              className="h-24 md:h-32 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-            />
-          </div>
-          
           <div className="space-y-4">
             <h1 className="text-5xl md:text-6xl font-bold text-blue-400 leading-tight animate-fadeInUp">
               Oldweiler Custom Carpentry
