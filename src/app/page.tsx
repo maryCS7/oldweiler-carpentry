@@ -177,7 +177,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-semibold text-blue-300 mb-3">About</h2>
           <div className="h-1 w-12 bg-blue-500 mx-auto mb-6 rounded"></div>
           <p className="text-gray-300 text-lg leading-relaxed">
-            <strong>Oldweiler Custom Carpentry</strong> is a family-owned and operated business based in Bennington, NY, built on over 20 years of professional experience and a craft passed down through generations. With a background in engineering, I bring a unique blend of technical precision and hands-on skill to every project. Each piece is the result of careful planning, thoughtful design, and a deep commitment to quality—custom work that&apos;s as functional as it is beautiful.
+            <strong>Oldweiler Custom Carpentry</strong> is a family-owned and operated business based in Bennington, NY, built on more than 20 years of experience and a craft passed down through generations. With a degree in mechanical engineering, I blend technical precision with hands-on craftsmanship to my work. Each project is the result of careful planning, thoughtful design, and a deep commitment to quality—custom work that&apos;s as functional as it is beautiful.
           </p>
         </div>
       </section>
