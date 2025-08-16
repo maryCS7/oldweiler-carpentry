@@ -200,7 +200,6 @@ export default function GalleryPage() {
                 {/* Image Info */}
                 <div className="p-4">
                   <h3 className="text-sm font-medium text-blue-200">{image.alt}</h3>
-                  <p className="text-xs text-gray-400 mt-1">Click to enlarge</p>
                 </div>
               </div>
             ))}
@@ -211,17 +210,17 @@ export default function GalleryPage() {
       {/* Image Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-12"
+          className="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 p-4 md:p-8 lg:p-12"
           onClick={closeModal}
         >
-          <div className="relative max-w-2xl max-h-[75vh]">
+          <div className="relative w-full max-w-2xl lg:max-w-4xl max-h-[80vh] md:max-h-[85vh]">
             {/* Close button */}
             <button
               onClick={closeModal}
-              className="absolute -top-24 right-0 text-white bg-black bg-opacity-70 hover:bg-opacity-100 rounded-full p-3 transition-all duration-200 z-10 border-2 border-white hover:border-gray-300 hover:scale-110"
+              className="absolute -top-12 md:-top-16 right-0 text-white bg-black bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 md:p-3 transition-all duration-200 z-10 border-2 border-white hover:border-gray-300 hover:scale-110"
               aria-label="Close modal"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -230,15 +229,17 @@ export default function GalleryPage() {
             <img
               src={selectedImage.src}
               alt={selectedImage.alt}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              className="w-full h-auto max-h-full object-contain rounded-lg shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />
             
             {/* Image title and description */}
-            <div className="absolute -bottom-24 left-0 text-white text-center w-full">
-              <h3 className="text-lg font-medium bg-black bg-opacity-70 px-4 py-2 rounded-lg mb-2">{selectedImage.alt}</h3>
+            <div className="absolute -bottom-12 md:-bottom-16 left-0 right-0 text-white text-center px-4">
+              <h3 className="text-base md:text-lg font-medium bg-black bg-opacity-80 px-4 py-2 rounded-lg mb-2 inline-block">
+                {selectedImage.alt}
+              </h3>
               {selectedImage.project?.description && (
-                <p className="text-sm bg-black bg-opacity-70 px-4 py-2 rounded-lg max-w-md mx-auto">
+                <p className="text-sm md:text-base bg-black bg-opacity-80 px-4 py-2 rounded-lg max-w-xl mx-auto leading-relaxed">
                   {selectedImage.project.description}
                 </p>
               )}

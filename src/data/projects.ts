@@ -148,4 +148,18 @@ export const projects = [
     tags: ["custom", "woodworking", "carpentry"],
     galleryImage: "/gallery/project20.JPG",
   },
+  {
+    slug: "composite-entry-platform",
+    title: "Composite Entry Platform",
+    description: "Small custom-built composite platform with durable framing, designed to transition cleanly from doorway to yard with modern details.",
+    tags: ["entryway", "composite", "decking"],
+    galleryImage: "/gallery/project21.JPG",
+  },
+  {
+    slug: "composite-stoop-step",
+    title: "Composite Stoop with Step",
+    description: "Compact composite stoop and single step with mitered edges and hidden fasteners for a clean, polished look.",
+    tags: ["stoop", "composite", "entryway"],
+    galleryImage: "/gallery/project22.JPG",
+  },
 ];
