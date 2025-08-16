@@ -336,7 +336,7 @@ export default function HomePage() {
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
             <p className="text-gray-500 text-sm">
-              © 2024 Oldweiler Custom Carpentry. All rights reserved.
+              © 2025 Oldweiler Custom Carpentry. All rights reserved.
             </p>
           </div>
         </div>
